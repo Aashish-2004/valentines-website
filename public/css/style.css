@@ -1,5 +1,5 @@
 body {
-  min-height: 100vh; /* keep this */
+  min-height: 100vh;
   width: 100%;
   margin: 0;
   font-family: "Delicious Handrawn", cursive;
@@ -7,13 +7,13 @@ body {
   justify-content: center;
   align-items: center;
 
-  /* Animated gradient */
-  background: linear-gradient(180deg, #FFC107, #FFD740, #FFF8E1);
-  background-size: 400% 400%;
-  animation: gradientShift 25s ease infinite;
+  /* Static gradient */
+  background: linear-gradient(180deg, #FFC107 0%, #FFF8E1 100%);
+
   position: relative;
-  overflow: hidden; /* keep this for hearts */
+  overflow: hidden; /* keeps floating hearts visible */
 }
+
 
 .container {
   text-align: center;
