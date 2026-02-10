@@ -2,7 +2,7 @@ body {
   min-height: 100vh;
   margin: 0;
   font-family: "Delicious Handrawn", cursive;
-  background: linear-gradient(180deg, #fff6b7 0%, #ffffff 70%);
+  background: linear-gradient(180deg, #FFD700 0%, #ffffff 70%);
   display: flex;
   justify-content: center;
   align-items: center;
