@@ -71,7 +71,7 @@ button:hover {
   font-weight: 500;
 }
 
-/* Floating hearts */
+/* Floating hearts container */
 .hearts {
   position: absolute;
   top: 0;
@@ -83,6 +83,7 @@ button:hover {
   z-index: 0;
 }
 
+/* Each heart */
 .heart {
   position: absolute;
   width: 20px;
@@ -90,7 +91,9 @@ button:hover {
   background: red;
   transform: rotate(-45deg);
   animation: floatUp linear infinite;
+  bottom: -20px;  /* start slightly below the screen */
 }
+
 
 .heart::before,
 .heart::after {
