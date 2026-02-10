@@ -24,6 +24,9 @@ const answers_yes = { english: "Yes" };
 
 let index = 0;
 let size = 40;
+const MAX_YES_BUTTON_SIZE = 180;
+const MAX_HEARTS_ON_SCREEN = 120;
+let heartIntervalId;
 
 const noBtn = document.getElementById("no-button");
 const yesBtn = document.getElementById("yes-button");
@@ -34,6 +37,10 @@ const heartsContainer = document.querySelector(".hearts");
 
 // Function to create hearts randomly
 function createHeart() {
+  if (heartsContainer.childElementCount >= MAX_HEARTS_ON_SCREEN) {
+    return;
+  }
+
   const heart = document.createElement("div");
   heart.classList.add("heart");
   heart.style.left = Math.random() * 100 + "%";
@@ -48,24 +55,29 @@ function createHeart() {
 
 
 // Create hearts every 300ms
-setInterval(createHeart, 300);
+heartIntervalId = setInterval(createHeart, 300);
 
 // No button click
 noBtn.addEventListener("click", () => {
   banner.src = "./public/images/no.gif";
-  index = (index + 1) % answers_no.english.length;
+  banner.alt = "Sad animated banner";
   noBtn.textContent = answers_no.english[index];
+  index = (index + 1) % answers_no.english.length;
 
-  size += 10;
+  size = Math.min(size + 10, MAX_YES_BUTTON_SIZE);
   yesBtn.style.height = size + "px";
+  yesBtn.style.minWidth = size + "px";
   yesBtn.style.fontSize = size / 4 + "px";
 });
 
 // Yes button click
 yesBtn.addEventListener("click", () => {
   banner.src = "./public/images/yes.gif";
+  banner.alt = "Celebration animated banner";
+  document.getElementById("question-heading").textContent = "Yay! It's a date ❤️";
   document.querySelector(".buttons").style.display = "none";
   document.querySelector(".message").style.display = "block";
+  clearInterval(heartIntervalId);
 
   // Confetti effect
   for (let i = 0; i < 150; i++) {
