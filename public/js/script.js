@@ -1,4 +1,4 @@
-// Yes/No button logic
+// --- Yes/No button logic ---
 const answers_no = {
   english: [
     "No",
@@ -25,50 +25,72 @@ const answers_yes = { english: "Yes" };
 let index = 0;
 let size = 40;
 
+// Buttons & banner
 const noBtn = document.getElementById("no-button");
 const yesBtn = document.getElementById("yes-button");
 const banner = document.getElementById("banner");
+const questionHeading = document.getElementById("question-heading");
 
-// Floating hearts container
+// Hearts container
 const heartsContainer = document.querySelector(".hearts");
 
-// Function to create hearts randomly
+// Function to create a floating heart
 function createHeart() {
   const heart = document.createElement("div");
   heart.classList.add("heart");
+
+  // Randomize size
+  const heartSize = 10 + Math.random() * 20; // 10px to 30px
+  heart.style.width = heartSize + "px";
+  heart.style.height = heartSize + "px";
+
+  // Random horizontal position
   heart.style.left = Math.random() * 100 + "%";
-  heart.style.bottom = "-20px"; // start slightly below the screen
+
+  // Start slightly below the screen
+  heart.style.bottom = "-20px";
+
+  // Random animation duration
   heart.style.animationDuration = 3 + Math.random() * 3 + "s";
-  heart.style.width = 15 + Math.random() * 15 + "px";
-  heart.style.height = heart.style.width;
+
   heartsContainer.appendChild(heart);
 
+  // Remove heart after it floats
   setTimeout(() => heart.remove(), 6000);
 }
 
-
-// Create hearts every 300ms
+// Generate hearts continuously
 setInterval(createHeart, 300);
 
-// No button click
+// --- No button click ---
 noBtn.addEventListener("click", () => {
   banner.src = "./public/images/no.gif";
+
+  // Change button text
   index = (index + 1) % answers_no.english.length;
   noBtn.textContent = answers_no.english[index];
 
+  // Increase Yes button size gradually
   size += 10;
   yesBtn.style.height = size + "px";
   yesBtn.style.fontSize = size / 4 + "px";
 });
 
-// Yes button click
+// --- Yes button click ---
 yesBtn.addEventListener("click", () => {
   banner.src = "./public/images/yes.gif";
+
+  // Hide buttons
   document.querySelector(".buttons").style.display = "none";
+
+  // Hide question heading
+  questionHeading.style.display = "none";
+
+  // Show success message
   document.querySelector(".message").style.display = "block";
 
-  // Confetti effect
-  for (let i = 0; i < 150; i++) {
+  // Create extra hearts/confetti
+  for (let i = 0; i < 50; i++) {
     createHeart();
   }
 });
