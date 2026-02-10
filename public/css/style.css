@@ -2,11 +2,16 @@ body {
   min-height: 100vh;
   margin: 0;
   font-family: "Delicious Handrawn", cursive;
- background: linear-gradient(180deg, #FFC107 0%, #FFF8E1 100%);
   display: flex;
   justify-content: center;
   align-items: center;
+
+  /* Animated gradient */
+  background: linear-gradient(180deg, #FFC107, #FFF8E1);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
 }
+
 
 .container {
   text-align: center;
@@ -61,4 +66,15 @@ button:hover {
 
 #success-message {
   font-weight: 500;
+}
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
 }
