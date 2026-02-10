@@ -1,3 +1,4 @@
+/* Body and animated gradient */
 body {
   min-height: 100vh;
   margin: 0;
@@ -6,16 +7,24 @@ body {
   justify-content: center;
   align-items: center;
 
-  /* Animated gradient */
-  background: linear-gradient(180deg, #FFC107, #FFF8E1);
+  background: linear-gradient(180deg, #FFC107, #FFD740, #FFF8E1);
   background-size: 400% 400%;
-  animation: gradientShift 15s ease infinite;
+  animation: gradientShift 25s ease infinite;
+  position: relative;
+  overflow: hidden;
 }
 
+/* Gradient animation */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
 .container {
   text-align: center;
   padding: 20px;
+  z-index: 1;
 }
 
 .banner-gif img {
@@ -27,6 +36,7 @@ h1 {
   margin-top: 15px;
 }
 
+/* Buttons */
 .buttons {
   display: flex;
   gap: 20px;
@@ -38,7 +48,6 @@ button {
   padding: 14px 32px;
   font-size: 18px;
   border-radius: 999px;
-  /* VERY rounded */
   border: none;
   cursor: pointer;
   color: white;
@@ -67,14 +76,55 @@ button:hover {
 #success-message {
   font-weight: 500;
 }
-@keyframes gradientShift {
+
+/* Floating hearts */
+.hearts {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.heart {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: red;
+  transform: rotate(-45deg);
+  animation: floatUp linear infinite;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: red;
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -10px;
+  left: 0;
+}
+
+.heart::after {
+  left: 10px;
+  top: 0;
+}
+
+@keyframes floatUp {
   0% {
-    background-position: 0% 0%;
-  }
-  50% {
-    background-position: 0% 100%;
+    transform: translateY(0) rotate(-45deg);
+    opacity: 1;
   }
   100% {
-    background-position: 0% 0%;
+    transform: translateY(-600px) rotate(-45deg);
+    opacity: 0;
   }
 }
