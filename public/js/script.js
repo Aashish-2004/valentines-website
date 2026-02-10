@@ -37,14 +37,15 @@ function createHeart() {
   const heart = document.createElement("div");
   heart.classList.add("heart");
   heart.style.left = Math.random() * 100 + "%";
+  heart.style.bottom = "-20px"; // start slightly below the screen
   heart.style.animationDuration = 3 + Math.random() * 3 + "s";
   heart.style.width = 15 + Math.random() * 15 + "px";
   heart.style.height = heart.style.width;
   heartsContainer.appendChild(heart);
 
-  // Remove after animation
   setTimeout(() => heart.remove(), 6000);
 }
+
 
 // Create hearts every 300ms
 setInterval(createHeart, 300);
