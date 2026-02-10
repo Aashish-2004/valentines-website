@@ -37,7 +37,7 @@ button {
   border: none;
   cursor: pointer;
   color: white;
-  font-family: 'Fredoka', sans-serif;
+  font-family: inherit;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
