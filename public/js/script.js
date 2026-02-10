@@ -1,3 +1,4 @@
+// Yes/No button logic
 const answers_no = {
   english: [
     "No",
@@ -19,9 +20,7 @@ const answers_no = {
   ]
 };
 
-const answers_yes = {
-  english: "Yes"
-};
+const answers_yes = { english: "Yes" };
 
 let index = 0;
 let size = 40;
@@ -30,9 +29,29 @@ const noBtn = document.getElementById("no-button");
 const yesBtn = document.getElementById("yes-button");
 const banner = document.getElementById("banner");
 
+// Floating hearts container
+const heartsContainer = document.querySelector(".hearts");
+
+// Function to create hearts randomly
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.style.left = Math.random() * 100 + "%";
+  heart.style.animationDuration = 3 + Math.random() * 3 + "s";
+  heart.style.width = 15 + Math.random() * 15 + "px";
+  heart.style.height = heart.style.width;
+  heartsContainer.appendChild(heart);
+
+  // Remove after animation
+  setTimeout(() => heart.remove(), 6000);
+}
+
+// Create hearts every 300ms
+setInterval(createHeart, 300);
+
+// No button click
 noBtn.addEventListener("click", () => {
   banner.src = "./public/images/no.gif";
-
   index = (index + 1) % answers_no.english.length;
   noBtn.textContent = answers_no.english[index];
 
@@ -41,9 +60,14 @@ noBtn.addEventListener("click", () => {
   yesBtn.style.fontSize = size / 4 + "px";
 });
 
+// Yes button click
 yesBtn.addEventListener("click", () => {
   banner.src = "./public/images/yes.gif";
-
   document.querySelector(".buttons").style.display = "none";
   document.querySelector(".message").style.display = "block";
+
+  // Confetti effect
+  for (let i = 0; i < 150; i++) {
+    createHeart();
+  }
 });
