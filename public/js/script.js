@@ -34,28 +34,23 @@ const questionHeading = document.getElementById("question-heading");
 // Hearts container
 const heartsContainer = document.querySelector(".hearts");
 
+// Envelope & letter elements
+const envelope = document.getElementById("envelope");
+const letter = document.getElementById("letter");
+
 // Function to create a floating heart
 function createHeart() {
   const heart = document.createElement("div");
   heart.classList.add("heart");
 
-  // Randomize size
-  const heartSize = 10 + Math.random() * 20; // 10px to 30px
+  const heartSize = 10 + Math.random() * 20;
   heart.style.width = heartSize + "px";
   heart.style.height = heartSize + "px";
-
-  // Random horizontal position
   heart.style.left = Math.random() * 100 + "%";
-
-  // Start slightly below the screen
   heart.style.bottom = "-20px";
-
-  // Random animation duration
   heart.style.animationDuration = 3 + Math.random() * 3 + "s";
 
   heartsContainer.appendChild(heart);
-
-  // Remove heart after it floats
   setTimeout(() => heart.remove(), 6000);
 }
 
@@ -65,12 +60,9 @@ setInterval(createHeart, 300);
 // --- No button click ---
 noBtn.addEventListener("click", () => {
   banner.src = "./public/images/no.gif";
-
-  // Change button text
   index = (index + 1) % answers_no.english.length;
   noBtn.textContent = answers_no.english[index];
 
-  // Increase Yes button size gradually
   size += 10;
   yesBtn.style.height = size + "px";
   yesBtn.style.fontSize = size / 4 + "px";
@@ -80,17 +72,32 @@ noBtn.addEventListener("click", () => {
 yesBtn.addEventListener("click", () => {
   banner.src = "./public/images/yes.gif";
 
-  // Hide buttons
+  // Hide buttons and question
   document.querySelector(".buttons").style.display = "none";
-
-  // Hide question heading
   questionHeading.style.display = "none";
 
-  // Show success message
-  document.querySelector(".message").style.display = "block";
+  // Hide success message for now
+  document.querySelector(".message").style.display = "none";
+
+  // Show the envelope
+  envelope.style.display = "block";
 
   // Create extra hearts/confetti
   for (let i = 0; i < 50; i++) {
     createHeart();
   }
+});
+
+// --- Envelope click ---
+envelope.addEventListener("click", () => {
+  // Hide envelope
+  envelope.style.display = "none";
+
+  // Show letter with sliding animation
+  letter.classList.add("show");
+
+  // Optional: show message after letter slides out
+  setTimeout(() => {
+    document.querySelector(".message").style.display = "block";
+  }, 1000); // matches the CSS transition
 });
