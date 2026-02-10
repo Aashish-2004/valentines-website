@@ -1,10 +1,11 @@
 const answers_no = {
   english: [
     "No",
-    "Are you sure?",
+    "Bebo!! Are you sure?",
     "Are you really sure??",
+    "My Kanmaniiiii, Please?",
     "Are you really really sure???",
-    "Think again?",
+    "Beboooooo..Think again?",
     "Don't believe in second chances?",
     "Why are you being so cold?",
     "Maybe we can talk about it?",
@@ -12,7 +13,7 @@ const answers_no = {
     "Ok now this is hurting my feelings!",
     "You are now just being mean!",
     "Why are you doing this to me?",
-    "Please give me a chance!",
+    "Please give me a chance, Bebo!",
     "I am begging you to stop!",
     "Ok, let's just start over.."
   ]
